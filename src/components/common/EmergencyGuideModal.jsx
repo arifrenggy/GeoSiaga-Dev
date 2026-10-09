@@ -46,45 +46,12 @@ const EMERGENCY_CONTACTS = [
   }
 ];
 
-export function EmergencyGuideModal({ isOpen, onClose }) {
+export function EmergencyGuidePanel() {
   const [activeTab, setActiveTab] = useState('kontak');
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(15, 23, 42, 0.75)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        zIndex: 9999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0.75rem',
-        animation: 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
-      }}
-      onClick={onClose}
-    >
-      <div
-        className="flat-card"
-        style={{
-          width: '100%',
-          maxWidth: '560px',
-          maxHeight: '92vh',
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: 'var(--bg-card)',
-          borderRadius: 'var(--radius-lg)',
-          overflow: 'hidden',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          animation: 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
+    <div className="flat-card guide-panel">
+{/* Modal Header */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -119,15 +86,6 @@ export function EmergencyGuideModal({ isOpen, onClose }) {
               </p>
             </div>
           </div>
-
-          <button
-            onClick={onClose}
-            aria-label="Tutup"
-            className="flat-btn-secondary"
-            style={{ minHeight: '32px', minWidth: '32px', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
-          >
-            <X size={18} strokeWidth={2.5} />
-          </button>
         </div>
 
         {/* Tab Navigation with Clean Responsive Touch Bar */}
@@ -433,6 +391,25 @@ export function EmergencyGuideModal({ isOpen, onClose }) {
           <span>Pedoman Resmi BNPB, BMKG & Kemenkes RI</span>
           <span style={{ fontWeight: '800', color: 'var(--color-danger)' }}>Bebas Pulsa 112</span>
         </div>
+      
+    </div>
+  );
+}
+
+export function EmergencyGuideModal({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="modal-content guide-modal" onClick={(e) => e.stopPropagation()}>
+        <EmergencyGuidePanel />
+        <button
+          onClick={onClose}
+          aria-label="Tutup"
+          className="guide-close flat-btn-secondary"
+        >
+          <X size={18} strokeWidth={2.5} />
+        </button>
       </div>
     </div>
   );

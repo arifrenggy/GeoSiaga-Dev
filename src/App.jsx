@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { Header } from './components/common/Header';
+import { TopBar } from './components/shell/TopBar';
+import { NavBar } from './components/shell/NavBar';
+import { SectionKicker } from './components/shell/SectionKicker';
 import { EcoHealthCard } from './components/cards/EcoHealthCard';
 import { AqiCard } from './components/cards/AqiCard';
 import { WeatherCard } from './components/cards/WeatherCard';
@@ -43,9 +45,9 @@ const CitySearchModal = lazy(() =>
 const ShareCardModal = lazy(() =>
   import('./components/common/ShareCardModal').then((m) => ({ default: m.ShareCardModal }))
 );
-const EmergencyGuideModal = lazy(() =>
+const EmergencyGuidePanel = lazy(() =>
   import('./components/common/EmergencyGuideModal').then((m) => ({
-    default: m.EmergencyGuideModal
+    default: m.EmergencyGuidePanel
   }))
 );
 const KarhutlaListModal = lazy(() =>
@@ -123,13 +125,15 @@ export function App() {
   // Modals
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [isEmergencyOpen, setIsEmergencyOpen] = useState(false);
   const [isVolcanoOpen, setIsVolcanoOpen] = useState(false);
   const [isKarhutlaOpen, setIsKarhutlaOpen] = useState(false);
   const [karhutlaData, setKarhutlaData] = useState(null);
   // Tick untuk re-render setelah status gunung api live termuat
   const [volcanoStatusTick, setVolcanoStatusTick] = useState(0);
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
+
+  // Navigasi utama: Beranda / Peta / Panduan
+  const [activeView, setActiveView] = useState('home');
 
   // PWA Prompt
   const [installPrompt, setInstallPrompt] = useState(null);
@@ -413,10 +417,21 @@ export function App() {
     );
   }
 
+  const handleViewChange = (view) => {
+    if (view === activeView) return;
+    triggerHaptic(10);
+    setActiveView(view);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
   return (
-    <div className="app-container" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-      {/* Header */}
-      <Header
+    <div
+      className="app-shell"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <TopBar
         location={location}
         onOpenSearch={() => setIsSearchOpen(true)}
         onGpsClick={requestGpsLocation}
@@ -428,9 +443,9 @@ export function App() {
         notificationsEnabled={notificationsEnabled}
         onRequestNotification={handleRequestNotification}
         onOpenShare={() => setIsShareOpen(true)}
-        onOpenEmergency={() => setIsEmergencyOpen(true)}
-        onOpenWidget={() => setIsWidgetOpen(true)}
       />
+
+      <NavBar activeView={activeView} onChangeView={handleViewChange} />
 
       {/* Lazy Loaded City Search Modal */}
       {isSearchOpen && (
@@ -459,15 +474,6 @@ export function App() {
         </Suspense>
       )}
 
-      {/* Lazy Loaded Emergency Guide Modal */}
-      {isEmergencyOpen && (
-        <Suspense fallback={null}>
-          <EmergencyGuideModal
-            isOpen={isEmergencyOpen}
-            onClose={() => setIsEmergencyOpen(false)}
-          />
-        </Suspense>
-      )}
 
       {/* Lazy Loaded Embed Widget Modal */}
       {isWidgetOpen && (
@@ -507,6 +513,12 @@ export function App() {
           />
         </Suspense>
       )}
+
+
+      <main className="shell-main">
+
+        {activeView === 'home' && (
+          <div className="view view-home">
 
       {/* PWA Install Banner */}
       {installPrompt && showPwaBanner && (
@@ -576,72 +588,101 @@ export function App() {
         </div>
       )}
 
-      {/* UNIQUE DIFFERENTIATOR: Eco-Health Hero Score & Outdoor Activity Matrix */}
-      <EcoHealthCard
-        aqiData={airQualityData}
-        weatherData={weatherData}
-        loading={loading}
-      />
+            <EcoHealthCard
+              aqiData={airQualityData}
+              weatherData={weatherData}
+              loading={loading}
+            />
 
-      {/* Row 1: AQI, Weather, Quake */}
-      <div className="dashboard-grid-3">
-        <AqiCard data={airQualityData} loading={loading} />
-        <WeatherCard data={weatherData} locationName={location.name} loading={loading} />
-        <EarthquakeCard
-          earthquake={latestEarthquake}
-          recentQuakes={recentEarthquakes}
-          onFocusQuake={handleFocusQuake}
-          loading={loading}
-        />
-      </div>
+            <section className="feed-section">
+              <SectionKicker
+                number="01"
+                title="Lingkungan Sekitar"
+                hint="Kualitas udara, cuaca, dan sinar UV di lokasi pantauan."
+              />
+              <div className="feed-row">
+                <AqiCard data={airQualityData} loading={loading} />
+                <WeatherCard data={weatherData} locationName={location.name} loading={loading} />
+                <UvCard uvIndex={weatherData?.current?.uvIndex || 0} loading={loading} />
+              </div>
+            </section>
 
-      
-      {/* Karhutla & Fire Danger Rating Card (BMKG FDRS & NASA FIRMS) */}
-      <KarhutlaCard
-        karhutlaData={karhutlaData}
-        airQualityData={airQualityData}
-        location={location}
-        onOpenModal={() => setIsKarhutlaOpen(true)}
-        loading={loading}
-      />
+            <section className="feed-section">
+              <SectionKicker
+                number="02"
+                title="Kesiapsiagaan Bencana"
+                hint="Gempa terbaru BMKG, sebaran titik api, dan gunung api terdekat."
+              />
+              <div className="feed-stack">
+                <EarthquakeCard
+                  earthquake={latestEarthquake}
+                  recentQuakes={recentEarthquakes}
+                  onFocusQuake={handleFocusQuake}
+                  loading={loading}
+                />
+                <KarhutlaCard
+                  karhutlaData={karhutlaData}
+                  airQualityData={airQualityData}
+                  location={location}
+                  onOpenModal={() => setIsKarhutlaOpen(true)}
+                  loading={loading}
+                />
+                <VolcanoCard
+                  location={location}
+                  onOpenModal={() => setIsVolcanoOpen(true)}
+                />
+              </div>
+            </section>
 
-      {/* Volcano Proximity & Monitoring Card (PVMBG / MAGMA Indonesia) */}
-      <VolcanoCard
-        location={location}
-        onOpenModal={() => setIsVolcanoOpen(true)}
-      />
+            <section className="feed-section">
+              <SectionKicker
+                number="03"
+                title="Tren & Prakiraan"
+                hint="Pergerakan ISPU 24 jam terakhir dan prakiraan cuaca seminggu ke depan."
+              />
+              <div className="feed-grid-2">
+                <Suspense fallback={<ComponentSkeleton height="240px" label="Memuat Grafik Tren AQI..." />}>
+                  <AqiChart hourlyData={airQualityData?.hourly} />
+                </Suspense>
+                <Suspense fallback={<ComponentSkeleton height="260px" label="Memuat Prakiraan Cuaca 7 Hari..." />}>
+                  <WeatherForecastChart dailyData={weatherData?.daily} />
+                </Suspense>
+              </div>
+            </section>
 
-      {/* Row 2: UV + Hourly Chart */}
-      <div className="dashboard-grid-2">
-        <UvCard uvIndex={weatherData?.current?.uvIndex || 0} loading={loading} />
-        <Suspense fallback={<ComponentSkeleton height="240px" label="Memuat Grafik Tren AQI..." />}>
-          <AqiChart hourlyData={airQualityData?.hourly} />
-        </Suspense>
-      </div>
+            <Footer onOpenWidget={() => setIsWidgetOpen(true)} />
+          </div>
+        )}
 
-      {/* Row 3: 7-Day Forecast */}
-      <div style={{ marginBottom: '1.5rem' }}>
-        <Suspense fallback={<ComponentSkeleton height="260px" label="Memuat Prakiraan Cuaca 7 Hari..." />}>
-          <WeatherForecastChart dailyData={weatherData?.daily} />
-        </Suspense>
-      </div>
+        {activeView === 'map' && (
+          <div className="view view-map">
+            <div className="map-view-head">
+              <span className="map-view-kicker">Peta Pantauan</span>
+              <p>Gempa BMKG terkini, titik api NASA FIRMS, dan kota pantauan. Sentuh ikon untuk pindah lokasi.</p>
+            </div>
+            <div className="map-view-frame">
+              <Suspense fallback={<ComponentSkeleton height="100%" label="Memuat Peta Interaktif Indonesia..." />}>
+                <IndonesiaMap
+                  currentLocation={location}
+                  earthquakes={recentEarthquakes}
+                  hotspots={karhutlaData?.allHotspots || []}
+                  onSelectCity={selectCity}
+                />
+              </Suspense>
+            </div>
+          </div>
+        )}
 
-      {/* Row 4: Interactive Map */}
-      <div style={{ marginBottom: '1.5rem' }}>
-        <Suspense fallback={<ComponentSkeleton height="360px" label="Memuat Peta Interaktif Indonesia..." />}>
-          <IndonesiaMap
-            currentLocation={location}
-            earthquakes={recentEarthquakes}
-            hotspots={karhutlaData?.allHotspots || []}
-            onSelectCity={selectCity}
-          />
-        </Suspense>
-      </div>
+        {activeView === 'guide' && (
+          <div className="view view-guide">
+            <Suspense fallback={<ComponentSkeleton height="420px" label="Memuat Panduan Kesiapsiagaan..." />}>
+              <EmergencyGuidePanel />
+            </Suspense>
+          </div>
+        )}
 
-      {/* Footer */}
-      <Footer onOpenWidget={() => setIsWidgetOpen(true)} />
+      </main>
 
-      {/* Vercel Web Analytics */}
       <Analytics />
     </div>
   );
