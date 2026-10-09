@@ -125,46 +125,46 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
 
       // Infographic Header
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 68px "Outfit", sans-serif';
+      ctx.font = '800 68px "Archivo", sans-serif';
       ctx.fillText('GeoSiaga', 80, 135);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '700 30px "Outfit", sans-serif';
+      ctx.font = '700 30px "Archivo", sans-serif';
       ctx.fillText('Laporan Lingkungan & Cuaca Real-Time', 80, 185);
 
       // Location Hero Card
       drawCard(80, 225, 920, 220, '#FFFFFF', '#E2E8F0');
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 52px "Outfit", sans-serif';
+      ctx.font = '800 52px "Archivo", sans-serif';
       drawWrappedText(locationName, 120, 295, 840, 56, 1);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '600 28px "Outfit", sans-serif';
+      ctx.font = '600 28px "Archivo", sans-serif';
       drawWrappedText(locationProvince, 120, 350, 840, 36, 1);
 
       ctx.fillStyle = '#059669';
-      ctx.font = '700 26px "Outfit", sans-serif';
+      ctx.font = '700 26px "Archivo", sans-serif';
       ctx.fillText(`${dateFormatted}`, 120, 405);
 
       // Eco-Health Composite Score Card
       drawCard(80, 470, 920, 270, '#FFFFFF', '#E2E8F0');
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '800 24px "Outfit", sans-serif';
+      ctx.font = '800 24px "Archivo", sans-serif';
       ctx.fillText(t.ecoScoreTitle, 120, 525);
 
       ctx.fillStyle = health.color || '#10B981';
-      ctx.font = '800 92px "Outfit", sans-serif';
+      ctx.font = '800 92px "Archivo", sans-serif';
       ctx.fillText(`${health.score}`, 120, 625);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '800 42px "Outfit", sans-serif';
+      ctx.font = '800 42px "Archivo", sans-serif';
       ctx.fillText('/100', 250, 625);
 
       // Dynamic Score Badge
       const badgeText = health.category || 'Baik';
-      ctx.font = '800 30px "Outfit", sans-serif';
+      ctx.font = '800 30px "Archivo", sans-serif';
       const badgeTextWidth = ctx.measureText(badgeText).width;
       const badgeWidth = Math.min(460, Math.max(240, badgeTextWidth + 50));
       const badgeX = 960 - badgeWidth;
@@ -181,7 +181,7 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       ctx.textAlign = 'left';
 
       ctx.fillStyle = '#334155';
-      ctx.font = '600 26px "Outfit", sans-serif';
+      ctx.font = '600 26px "Archivo", sans-serif';
       const cigsVal = health.cigs ?? health.cigarettesEquivalent ?? 0;
       const cigsNote = `Setara ${cigsVal} batang rokok/hari (Paparan PM2.5)`;
       drawWrappedText(cigsNote, 120, 700, 840, 34, 1);
@@ -192,42 +192,42 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       drawCard(80, 765, 440, 335, '#FFFFFF', '#E2E8F0');
 
       ctx.fillStyle = aqiInfo.color || '#10B981';
-      ctx.font = '800 24px "Outfit", sans-serif';
+      ctx.font = '800 24px "Archivo", sans-serif';
       ctx.fillText('KUALITAS UDARA', 120, 820);
 
       ctx.fillStyle = aqiInfo.color || '#10B981';
-      ctx.font = '800 80px "Outfit", sans-serif';
+      ctx.font = '800 80px "Archivo", sans-serif';
       ctx.fillText(`${aqi}`, 120, 915);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '700 28px "Outfit", sans-serif';
+      ctx.font = '700 28px "Archivo", sans-serif';
       ctx.fillText('AQI US', 270, 915);
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 30px "Outfit", sans-serif';
+      ctx.font = '800 30px "Archivo", sans-serif';
       drawWrappedText(aqiInfo.label, 120, 980, 360, 36, 1);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '600 24px "Outfit", sans-serif';
+      ctx.font = '600 24px "Archivo", sans-serif';
       ctx.fillText(`PM2.5: ${pm25} µg/m³`, 120, 1045);
 
       // Weather Card
       drawCard(560, 765, 440, 335, '#FFFFFF', '#E2E8F0');
 
       ctx.fillStyle = '#3B82F6';
-      ctx.font = '800 24px "Outfit", sans-serif';
+      ctx.font = '800 24px "Archivo", sans-serif';
       ctx.fillText('CUACA SAAT INI', 600, 820);
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 80px "Outfit", sans-serif';
+      ctx.font = '800 80px "Archivo", sans-serif';
       ctx.fillText(`${temp}°C`, 600, 915);
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 30px "Outfit", sans-serif';
+      ctx.font = '800 30px "Archivo", sans-serif';
       drawWrappedText(weatherVisual.label, 600, 980, 360, 36, 1);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '600 24px "Outfit", sans-serif';
+      ctx.font = '600 24px "Archivo", sans-serif';
       ctx.fillText(`${t.humidity}: ${humidity}%`, 600, 1045);
 
       // Karhutla & Wildfire Haze Alert Card
@@ -235,7 +235,7 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       drawCard(80, 1125, 920, 315, '#FFFFFF', hazeCardBorder);
 
       ctx.fillStyle = '#EA580C';
-      ctx.font = '800 24px "Outfit", sans-serif';
+      ctx.font = '800 24px "Archivo", sans-serif';
       ctx.fillText(t.karhutlaCardHeader, 120, 1175);
 
       // Status Badges Row
@@ -247,7 +247,7 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       ctx.fill();
 
       ctx.fillStyle = fdrs.color || '#10B981';
-      ctx.font = '800 22px "Outfit", sans-serif';
+      ctx.font = '800 22px "Archivo", sans-serif';
       ctx.fillText(`${t.landLocalBadge}: ${fdrs.code}`, 140, 1235);
 
       // Kabut Asap Badge
@@ -262,12 +262,12 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       ctx.fill();
 
       ctx.fillStyle = hazeBadgeColor;
-      ctx.font = '800 22px "Outfit", sans-serif';
+      ctx.font = '800 22px "Archivo", sans-serif';
       ctx.fillText(hazeBadgeText, 430, 1235);
 
       // Plain language advisory
       ctx.fillStyle = isHazeActive ? '#DC2626' : '#334155';
-      ctx.font = isHazeActive ? '700 22px "Outfit", sans-serif' : '600 22px "Outfit", sans-serif';
+      ctx.font = isHazeActive ? '700 22px "Archivo", sans-serif' : '600 22px "Archivo", sans-serif';
       if (isHazeActive) {
         const hazeWarnText = `Peringatan: Terdeteksi paparan kabut asap (${isHazeActive && nearestFire ? `${nearestFire.distanceKm} km dari ${nearestFire.regency}` : 'partikel asap karhutla'}). Gunakan masker N95 / KN95.`;
         drawWrappedText(hazeWarnText, 120, 1290, 840, 32, 2);
@@ -277,7 +277,7 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
       }
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '600 21px "Outfit", sans-serif';
+      ctx.font = '600 21px "Archivo", sans-serif';
       if (nearestFire) {
         const hotspotText = `Titik Panas: ${nearestFire.regency} (${nearestFire.distanceKm} km) • Satelit ${nearestFire.satellite || 'SNPP'}`;
         drawWrappedText(hotspotText, 120, 1392, 840, 26, 1);
@@ -291,7 +291,7 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
         drawCard(80, 1465, 920, 245, '#FFFFFF', '#E2E8F0');
 
         ctx.fillStyle = '#EF4444';
-        ctx.font = '800 24px "Outfit", sans-serif';
+        ctx.font = '800 24px "Archivo", sans-serif';
         ctx.fillText('GEMPA TERKINI (BMKG)', 120, 1515);
 
         // Magnitude Pill Badge
@@ -305,20 +305,20 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
         ctx.stroke();
 
         ctx.fillStyle = '#EF4444';
-        ctx.font = '800 46px "Outfit", sans-serif';
+        ctx.font = '800 46px "Archivo", sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(`M ${latestEarthquake.magnitude}`, 195, 1615);
-        ctx.font = '700 20px "Outfit", sans-serif';
+        ctx.font = '700 20px "Archivo", sans-serif';
         ctx.fillText(t.magnitude.toUpperCase(), 195, 1650);
         ctx.textAlign = 'left';
 
         // Location & Depth with auto-wrap
         ctx.fillStyle = '#0F172A';
-        ctx.font = '700 26px "Outfit", sans-serif';
+        ctx.font = '700 26px "Archivo", sans-serif';
         const nextY = drawWrappedText(latestEarthquake.wilayah || 'Indonesia', 295, 1575, 665, 34, 2);
 
         ctx.fillStyle = '#64748B';
-        ctx.font = '600 22px "Outfit", sans-serif';
+        ctx.font = '600 22px "Archivo", sans-serif';
         const depthStr = latestEarthquake.depth || latestEarthquake.kedalaman || '-';
         const quakeDetails = `${t.depth}: ${depthStr} • ${latestEarthquake.potensi || 'Tidak berpotensi tsunami'}`;
         drawWrappedText(quakeDetails, 295, Math.max(1645, nextY + 8), 665, 30, 2);
@@ -326,26 +326,26 @@ export function ShareCardModal({ isOpen, onClose, location, airQualityData, weat
         drawCard(80, 1465, 920, 245, '#FFFFFF', '#E2E8F0');
 
         ctx.fillStyle = '#10B981';
-        ctx.font = '800 24px "Outfit", sans-serif';
+        ctx.font = '800 24px "Archivo", sans-serif';
         ctx.fillText('INFORMASI KESELAMATAN', 120, 1515);
 
         ctx.fillStyle = '#0F172A';
-        ctx.font = '700 26px "Outfit", sans-serif';
+        ctx.font = '700 26px "Archivo", sans-serif';
         ctx.fillText('Tidak ada peringatan bencana kritis saat ini.', 120, 1580);
 
         ctx.fillStyle = '#64748B';
-        ctx.font = '600 22px "Outfit", sans-serif';
+        ctx.font = '600 22px "Archivo", sans-serif';
         ctx.fillText('Tetap pantau pembaruan berkala dari BMKG & GeoSiaga.', 120, 1635);
       }
 
       // Footer Attribution & Branding
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 32px "Outfit", sans-serif';
+      ctx.font = '800 32px "Archivo", sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText('geosiaga.vercel.app', 540, 1775);
 
       ctx.fillStyle = '#64748B';
-      ctx.font = '600 24px "Outfit", sans-serif';
+      ctx.font = '600 24px "Archivo", sans-serif';
       ctx.fillText('Data Resmi BMKG, PVMBG & NASA • Dipantau Secara Real-Time', 540, 1825);
 
       ctx.textAlign = 'left';

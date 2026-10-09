@@ -1,94 +1,99 @@
 /* ==========================================================================
-   GEOSIAGA - FLAT DESIGN SYSTEM
-   Zero Artificial Depth • Color as Structure • Bold Graphic Typography
+   GEOSIAGA-DEV — "POSKO SIAGA" DESIGN SYSTEM
+   Warm earth command post: ivory paper, terracotta ink, instrument mono.
+   Same class API as the original flat system; different skin, same features.
    ========================================================================== */
 
 :root {
-  /* Flat Light Palette (Primary Canonical Canvas) */
-  --bg-canvas: #ffffff;
-  --bg-muted: #f3f4f6;
-  --bg-subtle: #f9fafb;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f9fafb;
+  /* Light: warm ivory paper */
+  --bg-canvas: #f6f1e7;
+  --bg-muted: #ede5d4;
+  --bg-subtle: #e4d9c2;
+  --bg-card: #fffdf7;
+  --bg-card-hover: #fbf5e9;
 
-  --text-main: #111827;
-  --text-muted: #6b7280;
-  --text-subtle: #9ca3af;
-  --text-inverse: #ffffff;
+  --text-main: #221a10;
+  --text-muted: #6e6250;
+  --text-subtle: #9a8d78;
+  --text-inverse: #fffdf7;
 
-  /* Vibrant Flat Action Accents */
-  --color-primary: #3b82f6;      /* Blue 500 */
-  --color-primary-hover: #2563eb;/* Blue 600 */
-  --color-primary-bg: #eff6ff;   /* Blue 50 */
+  /* Terracotta action */
+  --color-primary: #c2410c;
+  --color-primary-hover: #9a3412;
+  --color-primary-bg: #fbe9dd;
 
-  --color-secondary: #10b981;    /* Emerald 500 */
-  --color-secondary-hover: #059669;
-  --color-secondary-bg: #ecfdf5; /* Emerald 50 */
+  /* Deep leaf (brand mark only, not decoration) */
+  --color-secondary: #43682a;
+  --color-secondary-hover: #36551f;
+  --color-secondary-bg: #eef1e0;
 
-  --color-accent: #f59e0b;       /* Amber 500 */
-  --color-accent-hover: #d97706;
-  --color-accent-bg: #fffbeb;    /* Amber 50 */
+  /* Signal ochre — warnings & UV scale only */
+  --color-accent: #a16207;
+  --color-accent-hover: #854d0e;
+  --color-accent-bg: #f8efdb;
 
-  --color-danger: #ef4444;       /* Red 500 */
-  --color-danger-hover: #dc2626;
-  --color-danger-bg: #fef2f2;    /* Red 50 */
+  /* Hazard red stays functional */
+  --color-danger: #b3261e;
+  --color-danger-hover: #922019;
+  --color-danger-bg: #fae5e3;
 
-  --color-purple: #8b5cf6;
-  --color-purple-bg: #f5f3ff;
+  --color-purple: #6d4f9e;
+  --color-purple-bg: #efeaf7;
 
-  --border-flat: #e5e7eb;
-  --border-thick: 2px solid #e5e7eb;
-  --border-focus: 2px solid #3b82f6;
+  --border-flat: #d9cdb8;
+  --border-thick: 1px solid #c4b698;
+  --border-focus: 2px solid #c2410c;
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
   --radius-full: 9999px;
 
-  /* Rigid Instant Transitions (No Slow Easing) */
   --anim-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --anim-bounce: 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
-  /* Flat Dark Mode Palette */
-  --bg-canvas: #0f172a;
-  --bg-muted: #1e293b;
-  --bg-subtle: #334155;
-  --bg-card: #1e293b;
-  --bg-card-hover: #334155;
+  /* Dark: warm charcoal of a night watch room */
+  --bg-canvas: #171310;
+  --bg-muted: #221c15;
+  --bg-subtle: #2d251c;
+  --bg-card: #211a12;
+  --bg-card-hover: #292117;
 
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
-  --text-inverse: #0f172a;
+  --text-main: #f1e9d8;
+  --text-muted: #b0a289;
+  --text-subtle: #7d715e;
+  --text-inverse: #171310;
 
-  --color-primary: #3b82f6;
-  --color-primary-hover: #60a5fa;
-  --color-primary-bg: rgba(59, 130, 246, 0.15);
+  --color-primary: #e2601a;
+  --color-primary-hover: #f07a35;
+  --color-primary-bg: rgba(226, 96, 26, 0.16);
 
-  --color-secondary: #10b981;
-  --color-secondary-hover: #34d399;
-  --color-secondary-bg: rgba(16, 185, 129, 0.15);
+  --color-secondary: #7ca24f;
+  --color-secondary-hover: #93b968;
+  --color-secondary-bg: rgba(124, 162, 79, 0.15);
 
-  --color-accent: #f59e0b;
-  --color-accent-hover: #fbbf24;
-  --color-accent-bg: rgba(245, 158, 11, 0.15);
+  --color-accent: #d3a127;
+  --color-accent-hover: #e2b444;
+  --color-accent-bg: rgba(211, 161, 39, 0.16);
 
-  --color-danger: #ef4444;
-  --color-danger-hover: #f87171;
-  --color-danger-bg: rgba(239, 68, 68, 0.15);
+  --color-danger: #e4524a;
+  --color-danger-hover: #f06c64;
+  --color-danger-bg: rgba(228, 82, 74, 0.16);
 
-  --border-flat: #334155;
-  --border-thick: 2px solid #334155;
-  --border-focus: 2px solid #3b82f6;
+  --color-purple: #a58ad4;
+  --color-purple-bg: rgba(165, 138, 212, 0.16);
+
+  --border-flat: #3a3024;
+  --border-thick: 1px solid #4a3f30;
+  --border-focus: 2px solid #e2601a;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* ABSOLUTELY NO BOX SHADOWS */
   box-shadow: none !important;
   text-shadow: none !important;
 }
@@ -99,9 +104,15 @@ html, body {
   overflow-x: hidden;
   background-color: var(--bg-canvas);
   color: var(--text-main);
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Numbers read like an instrument: mono, aligned */
+h1, h2, h3, strong, th, .mono-num {
+  font-variant-numeric: tabular-nums;
 }
 
 :focus-visible {
@@ -135,7 +146,7 @@ button, input, select, a {
   }
 }
 
-/* Flat Card: Color Block without artificial depth */
+/* Card: paper sheet with hairline rule */
 .flat-card {
   background-color: var(--bg-card);
   border: var(--border-thick);
@@ -145,31 +156,32 @@ button, input, select, a {
 }
 
 .flat-card:hover {
-  transform: scale(1.015);
-  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  border-color: var(--text-subtle);
 }
 
-/* Buttons */
+/* Buttons: squared, solid ink or outlined */
 .flat-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.65rem 1.25rem;
   min-height: 44px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: #fffdf7;
   border: none;
   font-weight: 700;
   font-size: 0.875rem;
+  letter-spacing: 0.01em;
   cursor: pointer;
   gap: 0.5rem;
-  transition: transform var(--anim-fast), background-color var(--anim-fast);
+  transition: background-color var(--anim-fast), transform var(--anim-fast);
 }
 
 .flat-btn-primary:hover {
   background-color: var(--color-primary-hover);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 .flat-btn-secondary {
@@ -178,20 +190,20 @@ button, input, select, a {
   justify-content: center;
   padding: 0.65rem 1rem;
   min-height: 44px;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-muted);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
   color: var(--text-main);
-  border: var(--border-thick);
+  border: 1px solid var(--text-muted);
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
   gap: 0.45rem;
-  transition: transform var(--anim-fast), background-color var(--anim-fast);
+  transition: background-color var(--anim-fast), border-color var(--anim-fast);
 }
 
 .flat-btn-secondary:hover {
-  background-color: var(--bg-subtle);
-  transform: scale(1.04);
+  background-color: var(--bg-muted);
+  border-color: var(--text-main);
 }
 
 .flat-btn-secondary.active {
@@ -200,14 +212,14 @@ button, input, select, a {
   color: var(--color-primary);
 }
 
-/* Header */
+/* Header: ruled like a bulletin masthead */
 .header-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: var(--border-thick);
+  border-bottom: 3px double var(--border-flat);
 }
 
 @media (min-width: 860px) {
@@ -236,7 +248,7 @@ button, input, select, a {
 .dashboard-grid-3 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
@@ -255,7 +267,7 @@ button, input, select, a {
 .dashboard-grid-2 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
@@ -265,7 +277,7 @@ button, input, select, a {
   }
 }
 
-/* Forecast Grid */
+/* Forecast Grid: logbook cells */
 .forecast-scroll-container {
   display: flex;
   gap: 0.6rem;
@@ -277,14 +289,14 @@ button, input, select, a {
   flex: 0 0 110px;
   text-align: center;
   padding: 1rem 0.5rem;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-muted);
-  border: var(--border-thick);
-  transition: transform var(--anim-fast), background-color var(--anim-fast);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-flat);
+  transition: border-color var(--anim-fast), background-color var(--anim-fast);
 }
 
 .forecast-item:hover {
-  transform: scale(1.05);
+  border-color: var(--color-primary);
 }
 
 @media (min-width: 768px) {
@@ -319,11 +331,12 @@ button, input, select, a {
   background-color: var(--bg-muted);
 }
 
-/* Flat Banners */
+/* Banners: pinned notices */
 .alert-banner {
   background-color: var(--color-danger-bg);
-  border: 2px solid var(--color-danger);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-danger);
+  border-left: 4px solid var(--color-danger);
+  border-radius: var(--radius-sm);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -334,8 +347,9 @@ button, input, select, a {
 
 .pwa-banner {
   background-color: var(--color-primary-bg);
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border-flat);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-sm);
   padding: 0.85rem 1.25rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -345,14 +359,11 @@ button, input, select, a {
   gap: 0.85rem;
 }
 
-
-
-
 @media (max-width: 640px) {
   .app-container {
     padding: 0.75rem 0.75rem 2rem 0.75rem;
   }
-  
+
   .flat-btn-primary,
   .flat-btn-secondary {
     min-height: 42px;
@@ -367,7 +378,7 @@ button, input, select, a {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(15, 23, 42, 0.75);
+  background-color: rgba(23, 19, 16, 0.78);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 99999;
@@ -392,7 +403,7 @@ button, input, select, a {
   position: relative;
   z-index: 100000;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.18), 0 8px 10px -6px rgba(0, 0, 0, 0.12);
   animation: modalScaleIn 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
